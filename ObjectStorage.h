@@ -19,6 +19,7 @@ public:
     void getAll(std::array<K, N>& keyArray) const;
 
 private:
+    // Generate a hash index from the given key
     int hashIndex(const K& key) const;
 
     // Used to keep track of the slot state

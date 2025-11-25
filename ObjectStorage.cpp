@@ -1,5 +1,9 @@
 #include "ObjectStorage.h"
 
+/// @brief Adds an object to the storage
+/// @param key The key to insert the object with
+/// @param obj The object pointer to be inserted
+/// @return True if the object was successfully added, false otherwise
 template <typename K, typename T, int N>
 bool ObjectStorage<K, T, N>::add(K key, const T* obj)
 {
@@ -32,6 +36,9 @@ bool ObjectStorage<K, T, N>::add(K key, const T* obj)
     return false;
 }
 
+/// @brief Marks an object as removed such that subsequent get calls fail
+/// @param key The key of the object to be removed
+/// @return True if removal was successful, false otherwise
 template <typename K, typename T, int N>
 bool ObjectStorage<K, T, N>::remove(K key)
 {
@@ -58,6 +65,9 @@ bool ObjectStorage<K, T, N>::remove(K key)
     return false;
 }
 
+/// @brief Retrieves an object from storage
+/// @param key The key of the object to be retrieved
+/// @return A pointer to the retrieved object
 template <typename K, typename T, int N>
 const T* ObjectStorage<K, T, N>::get(K key) const
 {
@@ -80,6 +90,8 @@ const T* ObjectStorage<K, T, N>::get(K key) const
     return nullptr;
 }
 
+/// @brief Returns all keys of non-removed objects by reference
+/// @param keyArray The array to be filled with the keys, avoids dynamic memory allocation
 template <typename K, typename T, int N>
 void ObjectStorage<K, T, N>::getAll(std::array<K, N>& keyArray) const
 {
@@ -96,6 +108,9 @@ void ObjectStorage<K, T, N>::getAll(std::array<K, N>& keyArray) const
     }
 }
 
+/// @brief Generate a hash index from the given key
+/// @param key The key to be hashed
+/// @return The hashed index, wrapped to fit within the bounds of the storage
 template <typename K, typename T, int N>
 int ObjectStorage<K, T, N>::hashIndex(const K& key) const
 {
